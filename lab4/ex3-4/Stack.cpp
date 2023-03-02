@@ -15,7 +15,7 @@ void Stack::push(Node *newNode){
 }
 
 Node *Stack::pop(){
-    Node *temp = tail;
+    Node *temp = head;
     remove(0);
     return temp;
 }
