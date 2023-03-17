@@ -44,13 +44,20 @@ void LinkedList::insert(Node* newNode, int pos){
 }
 
 Node* LinkedList::remove(int pos){
-    if(pos < 0){
-      pos += size;  
-    }
+    // if(pos < 0){
+    //   pos += size;  
+    // }
     if(head == NULL || pos<0 || pos>=size){
         return NULL;
     } 
     Node* temp = head;
+    if(pos == 0 && size == 1){
+        temp = head;
+        head = NULL;
+        tail = NULL;
+        size--;
+        return temp;
+    }
     if(pos == 0){
         temp = head;
         head = head->getNext();
@@ -68,13 +75,14 @@ Node* LinkedList::remove(int pos){
         remove->getNext()->setPrev(temp);
         remove->setNext(NULL);
         remove->setPrev(NULL);
+        size--;
     }
     else if(pos == size-1){
         temp->setNext(NULL);
         tail->setPrev(NULL);
         tail = temp;
+        size--;
     }
-    size--;
     return remove;
 }
 
@@ -85,7 +93,7 @@ void LinkedList::print(){
         cout << " ";
         temp = temp->getNext();
     }
-    cout << endl << "LinkedList size: " << size;
+    // cout << endl << "LinkedList size: " << size;
 }
 
 int LinkedList::getSize(){
